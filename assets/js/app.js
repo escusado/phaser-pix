@@ -18,15 +18,20 @@ Class('App').inherits(Widget)({
         },
 
         create : function create() {
-            floor = new Phaser.Rectangle(0, 550, 800, 50);
+            this.d = 0;
+            this.p1 = new Phaser.Point(200, 300);
+            this.p2 = new Phaser.Point(300, 300);
         },
 
         update : function update() {
-            console.log('>update');
+            this.p1.rotate(this.p2.x, this.p2.y, this.game.math.wrapAngle(this.d), true);
+            this.d++;
         },
 
         render : function render () {
-            this.game.debug.geom(floor,'#0fffff');
+            var ball = new Phaser.Rectangle(this.p1.x, this.p1.y, 10,10);
+            this.game.debug.geom(ball, '#3AFD5D');
+
         }
     }
 });
